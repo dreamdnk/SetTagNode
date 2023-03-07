@@ -1,0 +1,20 @@
+data
+	setting.json文件
+	储存book目录，最后访问时间，系统设置。
+	[book]...文件夹
+	每本book单独对应一个文件夹，以数字id做文件名
+		directory文件夹
+		使用3个json文件储存id-单位名称、最后的界面配置、标签-id
+		content文件夹
+		以id为文件名储存txt信息
+		title文件
+		储存book名、author等信息
+		
+node
+	fileAct.js
+	保存、读取操作
+web
+	index.html
+	初始界面，用于创建、打开book
+	book.html
+	主要界面，操作book的内容

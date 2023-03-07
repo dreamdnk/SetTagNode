@@ -1,0 +1,15 @@
+{
+  "name": "tagsetnote",
+  "version": "1.0.0",
+  "description": "a third-rate work to untangle a novel or other works.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "npm run start"
+  },
+  "author": "zeronly",
+  "license": "MIT",
+  "devDependencies": {
+    "@electron-forge/cli": "^6.0.5"
+  }
+}
