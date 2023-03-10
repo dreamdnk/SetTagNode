@@ -3,40 +3,42 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';style-src 'self' 'unsafe-inline';" />
-    <title>TagSetNote</title>
+	<title>TagSetNote</title>
 <!-- 	<link rel="stylesheet" type="text/css" href="../css/index.css"> -->
 	<style>
 		body{
 			margin: 0;
-			background-image: url("../img/space.jpg");
 		}
 	</style>
   </head>
   <body>
-	<input type="text" id="x" value=""/>
-	<div class="ha" onclick="test()">ABC</div>
+	<input type="text" id="x" value="10"/>
+	<div class="ha" onclick="test()">test</div>
+	<div class="ha" onclick="load()">read</div>
 	<div class="ha" onclick="check()">EFG</div>
 	<a href="new_file.html" class="ha">click</a>
   </body>
+  <script src="../js/config.js"></script>
   <script>
 	  let b={};
-	  function test(){
-		  //versions.writeTest(12333)
-		  let a=0;
-		  while(a<10000){
-			  a++;
-			  b[a+""]=a;
-		  }
+	  let z =0;
+	  async function test(){
+		  let x = await file.bookClick(1);
+		  document.getElementById("x").value = x;
+		  console.log(x);
+	  }
+	  async function load(){
+			  let y = document.getElementById("x").value
+			  let x;
+			  x = await file.load(y).catch(e=>{
+				  console.log(e);
+				  return e;
+			  })
+	  		  document.getElementById("x").value = x;
+	  		  console.log(x);
 	  }
 	  function check(){
-		  let hash = new Map();
-		  let ohash = new Map();
-		  ohash.set("c","111")
-		  hash.set("a",ohash);
-		  hash.set("b",{id:1,value:213});
-		  ohash.set("c","2222");
-		  console.log(hash.toString());
+		  file.write("test")
 	  }
-
   </script>
 </html>

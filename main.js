@@ -1,15 +1,17 @@
+const { resolve } = require('dns')
 const { app, BrowserWindow,Menu,globalShortcut,ipcMain } = require('electron')
 const path = require('path')
 //const fs = require('fs')
 const fileAct = require('./node/fileAct.js')
 
 Menu.setApplicationMenu(null)
+
 const createWindow = () => {
   const win = new BrowserWindow({
     width: 800,
     height: 600,
 	backgroundColor: '#DADADA',
-	icon:'favicon.ico',
+	icon:path.join(__dirname,'./favicon.ico'),
 	webPreferences: {
 	      preload: path.join(__dirname, 'node/preload.js'),
 	},
@@ -20,7 +22,9 @@ const createWindow = () => {
   	win.toggleDevTools()
   })
   
-  ipcMain.handle('write', (b)=>{fileAct.write(b,1)})
+  ipcMain.handle('write', (e,name,str)=>{fileAct.write(name,str)})
+  ipcMain.handle('bookClick',(e,id)=>fileAct.bookClick(id))
+  ipcMain.handle('load',(e,name)=>fileAct.load(name))
 }
 
 app.whenReady().then(() => {
